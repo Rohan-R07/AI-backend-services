@@ -1,6 +1,8 @@
 
 from openai import OpenAI
 
+from schema import AiResponseSchema
+
 class AiServices:
     def __init__(self,apiKey:str,modelLink:str):
         self.apiKey = apiKey
@@ -31,4 +33,20 @@ class AiServices:
 
         )
 
-        return responses
+        return AiResponseSchema(
+            question=input,
+            response=responses.choices[0].message.content
+        )
+
+
+
+#-------------------TESTING---------------------------
+# obj = AiServices(
+#     apiKey=
+#     modelLink=
+# )
+# obj.setup()
+# response = obj.Ask("Who is the founder of Google ")
+
+# print(response)
+

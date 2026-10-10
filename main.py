@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from ai import AiServices
 
+from schema import AiResponseSchema
+
+
 import os
 import dotenv
 from dotenv import load_dotenv
@@ -20,7 +23,7 @@ def basic():
     return "AI Servises have been initialized"
 
 
-@app.post("/giveData/{id}")
+@app.post("/giveData/{id}",response_model=AiResponseSchema)
 def ask_Question(text:str):
     respone = obj.Ask(text)
     return respone
